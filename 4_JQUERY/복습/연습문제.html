@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연습문제</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <style>
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul li {
+            cursor: pointer;
+            position: relative;
+            padding: 12px 8px 12px 40px;
+            font-size: 18px;
+            transition: 0.2s;
+        }
+
+        ul li:nth-child(odd) {
+           background: #333;
+        }
+
+
+        .header {
+            background-color: #f44336;
+            padding: 30px 40px;
+            color: white;
+            text-align: center;
+        }
+        .header:after {
+            content: '';
+            display: table;
+            clear: both;
+        }
+
+        .header input {
+            margin: 0;
+            border: none;
+            width: 75%;
+            padding: 10px;
+            float: left;
+            font-size: 16px;
+        }
+
+        .btn-add {
+            padding: 8.5px;
+            width: 15%;
+            background: #d9d9d9;
+            color: #555;
+            float: left;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 0;
+            box-sizing: border-box;
+        }
+        .btn-add:hover {
+          background-color: #bbb;
+        }
+        span[name='delete']{
+            display: flex;
+            justify-content: end;
+        }
+    </style>
+</head>
+<body>
+    <h3>문제3. 텍스트 상자에 입력된 내용을 하단 목록에 추가</h3>
+    <div id="addArea" class="header">
+      <h2>My To Do List</h2>
+      <input type="text" id="add" placeholder="할일 작성.." maxlength="150">
+      <span class="btn-add" onclick="addTask()">추가</span>
+    </div>
+    <ul id="todoList">
+      <li>HTML 공부하기<span name="delete" onclick="Delete();">x</span></li>
+      <li>CSS 공부하기<span name="delete" onclick="Delete();">x</span></li>
+      <li>아이스크림 먹기<span name="delete" onclick="Delete();">x</span></li>
+    </ul>
+    
+    <script>
+        
+        function addTask() {
+            $('#todoList').append('<li>'+ document.getElementById("add").value +'<span name="delete" onclick="Delete();">x</span></li>');
+        };
+
+        function Delete() {
+
+        };
+        
+    </script>
+</body>
+</html>

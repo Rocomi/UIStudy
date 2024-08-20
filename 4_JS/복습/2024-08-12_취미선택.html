@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>240812 복습 페이지</title>
+
+    <style>
+        .header { padding: 2%; border: 3px outset darkmagenta; }
+
+        .content fieldset { width: 430px; text-align: right;}
+        .content #result { width: 450px; height: 300px; border: 3px inset darkcyan; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <p>
+            체크 박스 선택 후 "카테고리 선택"을 누르면 하단 네모에 선택한 카테고리 출력<br>
+            이 때, "전체 선택" 체크 박스 선택 시 모든 카테고리가 선택 되며, 선택 해제 시 모두 선택 해제 됨<br>
+            또한 카테고리 체크박스를 전부 선택하면 "전체 선택" 체크 박스가 선택되고 <br>
+            하나라도 선택이 되어있지 않으면 "전체 선택" 체크 박스는 선택 해제 됨.            
+        </p>
+    </div>
+    <br><br><br>
+    <div class="content">
+        <fieldset>
+            <legend>취미</legend>
+            <input type="checkbox" id="all" value="전체선택" onchange="allCheck()">
+            <label for="all">전체 선택</label>
+            
+            <input type="checkbox" name="hobby" id="novel" value="소설" onchange="checkboxTrigger()">
+            <label for="novel">소설</label>
+            
+            <input type="checkbox" name="hobby" id="poem" value="시" onchange="checkboxTrigger()">
+            <label for="poem">시</label>
+            
+            <input type="checkbox" name="hobby" id="self-dev" value="자기계발" onchange="checkboxTrigger()">
+            <label for="self-dev">자기계발</label>
+            
+            <input type="checkbox" name="hobby" id="travel" value="여행" onchange="checkboxTrigger()">
+            <label for="travel">여행</label>
+            
+            <input type="checkbox" name="hobby" id="game" value="게임" onchange="checkboxTrigger()">
+            <label for="game">게임</label>
+            
+            <input type="checkbox" name="hobby" id="fishing" value="낚시" onchange="checkboxTrigger()">
+            <label for="fishing">낚시</label>
+            
+            <input type="checkbox" name="hobby" id="cooking" value="요리" onchange="checkboxTrigger()">
+            <label for="cooking">요리</label>
+            
+            <input type="checkbox" name="hobby" id="hiking" value="등산" onchange="checkboxTrigger()">
+            <label for="hiking">등산</label>
+            
+            <input type="checkbox" name="hobby" id="drama" value="드라마보기" onchange="checkboxTrigger()">
+            <label for="drama">드라마보기</label>
+        </fieldset>
+
+        <br>
+
+        <button onclick="select()">카테고리 선택</button>
+
+        <br><br>
+
+        <div id="result">
+            
+        </div>
+    </div>
+
+    <script>
+        function allCheck(){
+               let all = document.getElementById("all");
+               let hList = document.getElementsByName("hobby");
+
+               for (let checkbox of hList){
+                   checkbox.checked = all.checked;
+               }
+           }
+
+           function checkboxTrigger() {
+
+               let allChecked = true;
+               let hList = document.getElementsByName("hobby");
+
+               for (let h of hList) {
+                    // 전체선택에 name이 없기 때문에 전처럼 continue문을 쓸 필요가 없다
+                   if (!h.checked) {
+                       allChecked = false;
+                       break;
+                   }
+               }
+           document.getElementById("all").checked = allChecked;
+           }
+
+           function select() {
+               
+               let hList = document.getElementsByName("hobby");
+               // 선택된 값들의 정보를 저장할 변수
+               let hobbies = '';
+
+               for (let h of hList) {
+
+                   if (h.checked){      // 체크된 상태의 체크박스인지 확인
+
+                        if (hobbies == ''){
+                            hobbies += h.value;
+                        } else {
+                            hobbies += "/" + h.value;
+                        }
+
+                   }
+
+               }
+
+               document.getElementById("result").innerText = hobbies;
+
+           }
+    </script>
+
+</body>
+</html>

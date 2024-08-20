@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>웹 문서 구조</title>
+
+    <style>
+        div {
+            box-sizing: border-box;
+            /* border: 1px solid gray; */
+        }    
+
+        /** 전체를 감싸는 div 영역 */
+        .wrap {
+            width: 1000px;
+            height: 800px;
+            min-height: 500px;
+            margin: auto;
+        }
+
+        /** 3가지 영역 (#header, #content, #footer) */
+        /* #header, #content, #footer {} */
+        .wrap > div {
+            width: 100%;
+        }
+
+        #header, #footer {
+            height: 20%;
+        }
+        #content {height: 60%;}
+
+        #content > div {height: 100%; float: left;}
+
+        #content-1 {
+            height: 40%;
+        }
+        #content-1 > div {height: 100%; float: left;}
+
+        /* #content1, #content3 { width: 20%;}
+        #content2 { width: 60%;} */
+        #content1, #content3 { width: 200px;}
+        #content2 { width: calc(100% - 400px);}
+
+        /****************************************** 푸터 영역**************************************/
+        #footer > div {
+            width: 100%;
+            padding-left: 30px;
+        }
+        #footer1 {height: 20%; background-color: #d5e4f7;}
+        #footer2 {height: 80%;}
+        #footer1 > a {
+            text-decoration: none;
+            color: #222;
+            font-size: 12px;
+            font-weight: bold;
+            margin: 15px;
+            vertical-align: middle;
+       }
+       #footer1 > a:hover {
+            color: red
+       }
+
+       #footer2>p {
+            width: 100%;
+            box-sizing: border-box;
+            margin: 0;
+            font-size: 12px;
+            color: #656565;           
+       }
+       #p1 {
+        height: 80%;
+        padding: 5px 10px;
+       }
+       #p2 {
+        height: 20%; text-align:center;
+       }
+
+        /*******************************************************************************************/
+
+        /***********************************************************로그인폼 영역********************/
+        .login-form {
+            width: 100%;
+            height: 30%;
+        }
+        .login-form > * {width: 100%;}
+
+        #login-form-input {height: 80%;}
+        #login-link-area {height: 20%; text-align: center;}
+
+        #login-form-input > * { height: 100%; float: left;}
+        #user-info { width: 65%;}
+        #btn-area { width: 35%;}
+
+        #user-info > input {
+            width: 100%;
+            height: 50%;
+            box-sizing: border-box;
+        }
+        #user-info > input::placeholder {
+            font-size: 0.8em;
+          
+        }
+
+        #btn-area > button {
+            border: 0.5px solid black;
+            border-radius: 5px;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(0, 163, 0);
+            color: #fff;
+        }
+
+        #login-link-area > a {
+            text-decoration: none;
+            color: #000;
+            font-size: 12px;
+            margin: 10px;
+            line-height: 30px;
+        }
+        /*******************************************************************************************/
+
+        /********************************************************************************헤더 영역*****/
+        form, input {
+            box-sizing: border-box;
+        }
+
+        #title {
+            text-align: center;
+            color: rgb(0, 163, 0);
+        }
+        
+        #header {
+            width: 100%;
+            height: 150px;
+
+            position: relative;
+        }
+
+        form > * {
+            box-sizing: border-box;
+            float: left;
+            height: 100%;
+        }
+
+        #search-form {
+            width: 80%;
+            height: 20%;
+
+            /***********************************************/
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            /* => 절대위치/ 상대위치를 사용하여 상하좌우 모두 양 끝으로 가도록 설정하면 가운데 배치됨! */
+
+        }
+
+        #search-btn {
+            border: none;
+            background-color: rgb(0, 163, 0);
+            color: #fff;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+
+        #search-input {
+            border: 4px solid rgb(0, 163, 0);
+        }
+
+        #search-form > input {height: 100%; float: left;}
+        #search-form > input:nth-child(1) { width: 80%;}
+        #search-form > input:nth-child(2) { width: 20%;}
+        /* :nth-child(n) => 자손들 중에 n번째 자손 요소 선택 */
+        /*******************************************************************************************/
+
+        /*****************************************************************메뉴바 화면*****************/
+        #navigator {
+            background-color: rgba(0, 219, 0, 0.897);
+            border: 1px solid #02a702 ;
+            border-radius: 10px;
+        }
+
+        ul, li {
+            list-style-type: none; 
+            margin: 0;
+            padding: 0;
+        }
+        a {
+            text-decoration: none;
+            color: black;   
+            font-weight: bold;
+        }
+
+        #navigator {
+            height: 40px;
+        }
+        div {
+            /* border: 1px solid; */
+            box-sizing: border-box;
+        }
+
+        #nav {
+            height: 100%;
+        }
+        #nav > li { 
+            float: left;
+            width: 100px;
+            height: 100%;
+            text-align: center;
+        }
+
+        #nav a {
+            font-size: 18px;
+            font-weight: 900;
+            width: 100%;
+            height: 100%;
+
+            display: block;
+            /* vertical-align: middle; */
+            line-height: 35px;
+        }
+
+        #nav a:hover {
+            color: skyblue;
+            scale: 1.08;
+        }
+
+        #nav>li>ul {
+            display: none;
+            position: relative;
+        }
+
+        #nav > li > a:hover + ul {
+            display: block;
+            z-index: 99;
+        }
+
+        #nav > li > ul:hover {
+            display: block;
+        }
+        /*******************************************************************************************/
+
+    </style>
+
+</head>
+<body>
+    <div class="wrap">
+
+        <div id="header">
+            <div id="title">
+                <h1>NEVER
+                <img src="data:image/jpeg;base64,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" alt=""
+                height="40px"></h1>
+            </span>
+            </div>
+            <form action="search" id="search-form">
+    
+                <input type="text" name="keyword" id="search-input">
+                <input type="submit" value="검색" id="search-btn">
+            </form>
+        </div>
+
+        <div id="navigator">
+            <ul id="nav">
+                <li><a href="#">Java</a></li>
+                <li><a href="#">Oracle</a></li>
+                <li>
+                    <a href="#">Front-end</a>
+                    <ul>
+                        <li><a href="" >HTML</a></li>
+                        <li><a href="">CSS</a></li>
+                        <li><a href="">Javascript</a></li>
+                        <li><a href="">jQuery</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Server</a>
+                    <ul>
+                        <li><a href="">JDBC</a></li>
+                        <li><a href="">Servlet</a></li>
+                        <li><a href="">JSP</a></li>
+                        <li><a href="">AJAX</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Framework</a></li>
+            </ul>
+        </div>
+
+        <div id="content">
+            <div id="content1">
+                <img src="../resources/content.JPG" width="100%" height="90%">
+            </div>
+
+            <div id="content2">
+                <img src="../resources/naver.jpg" width="100%" height="100%">
+            </div>
+
+            <div id="content3">
+                <div class="login-form">
+                    <form action="" id="login-form-input">
+            
+                        <div id="user-info">
+                           
+                            <input type="text"
+                                    placeholder="아이디를 입력해주세요">
+            
+                            <input type="password"
+                                   placeholder="비밀번호를 입력해주세요">
+            
+                        </div>
+                        
+                        <div id="btn-area"> 
+                            <button type="submit">로그인</button> 
+                        </div>
+            
+                    </form>
+                    
+                    <div id="login-link-area">
+                        <a href="">회원가입</a> |
+                        <a href="">ID/PW찾기</a>
+                    </div>
+
+                    <img src="../resources/sidebar.JPG" width="100%">
+                </div>
+            </div>
+        </div>
+        <div id="content-1">
+            <div class="content1-1">
+                <img src="../resources/웹툰.JPG" height="320px">
+            </div>
+            <div class="content1-2">
+                <img src="../resources/book.JPG" height="320px">
+            </div>
+        </div>
+
+        <div id="footer">
+            <div id="footer1">
+                <a href="">이용약관</a> |
+                <a href="">개인정보처리방침</a> |
+                <a href="">인재 채용</a> |
+                <a href="">훈련비 게시</a> |
+                <a href="">강사 구인</a>
+            </div>
+            <div id="footer2">
+                <p id="p1">
+                    강남지원 1관 : 서울특별시 강남구 테헤란로14길 6 남도빌딩 2F, 3F, 4F, 5F, 6F<br>
+                    강남지원 2관 : 서울특별시 강남구 테헤란로10길 9 그랑프리 빌딩 4F, 5F, 7F<br>
+                    강남지원 3관 : 서울특별시 강남구 테헤란로 130 호산빌딩 5F, 6F<br>
+                    종로지원 : 서울특별시 중구 남대문로 120 그레이츠 청계(구 대일빌딩) 2F, 3F<br>
+                    당산지원 : 서울특별시 영등포구 선유동2로 57 이레빌딩(구관) 19F, 20F<br>
+                </p>
+                <p id="p2">
+                    Copyright &copy; 1998-2024 KH Information Educational Institute All Right Reserved
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

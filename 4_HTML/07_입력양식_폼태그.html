@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML - 입력 양식, 폼 태그</title>
+</head>
+<body>
+    <h2>입력 양식 태그</h2>
+    <h3>input 태그 </h3>
+    <p>사용자에게 값을 입력받을수 있는 텍스트 상자 또는 체크 박스 등을 표시할 수 있음</p>
+    <!-- input 태그는 인라인 요소 -->
+    아이디 : <input type="text"> <br>
+    비밀번호 : <input type="password"> <br>
+    성별 : <input type="radio">남 <input type="radio">여
+    <br>
+    <input type="submit" value="회원가입">
+    <hr>
+    <h2>폼 태그</h2>
+    <p>
+        form 태그 내에 submit 버튼 클릭 시 해당 form 태그 내에 작성된 <br>
+        사용자 입력한 값을 서버로 전달하면서 요청하는 역할을 수행 <br>
+
+        form action="" method="" <br><br>
+        * action : 요청할 서버 경로
+                    => 해당 서버로 사용자가 form 내에 입력 태그를 통해 작성한 값들을 전달 <br>
+        * method : 요청 전송 방식 지정 (get/post). 기본값 : get <br>
+        &nbsp;&nbsp;> get 방식 : 요청 시 사용자가 입력한 값들이 url에 노출되는 방식 <br>
+        &nbsp;&nbsp;> post 방식 : 요청 시 사용자가 입력한 값들이 url에 노출되지 않는 방식 <br>
+
+        <br>
+        form 내의 submit 버튼 클릭 시 action 속성에 지정한 서버로 사용자가 입력한 값들이 전달되면서 <br>
+        요청됨 (사용자가 입력한 값들은 항상 key=value 형태로 전달)
+    </p>
+    <hr>
+    <form action = "search" method="get">
+        검색어 : <input type="text" name="" id="keyword">
+        <input type="submit" value="검색">
+    </form>
+    <br>
+    
+    <form action="https://www.youtube.com/results" method="get">
+        <fieldset>
+        유튜브 검색 : <input type="text" name="search_query">
+        <input type="submit" value="검색">
+        </fieldset>
+    </form>
+
+    <hr>
+
+    <fieldset>
+        테두리 표시 : fieldset
+    </fieldset>
+
+    <h3>fieldset : 그룹으로 묶어주는 태그 (기본적으로 테두리 표시)</h3>
+    <h3>legend : fieldset으로 묶여진 그룹의 제목을 붙여주는 태그</h3>
+
+    <form action="test">
+        <fieldset>
+            <legend> 그룹 1  </legend>
+            입력 1 : <input type="text" name="input1" > <br>
+            입력 2 : <input type="text" name="input2">
+        </fieldset>
+
+        <fieldset>
+            <legend> 그룹 2 </legend>
+            입력 3 : <input type="text" name= "input3"> <br>
+            입력 4 : <input type="text" name= "input4">
+        </fieldset>
+
+        <input type="submit">
+    </form>
+    <hr>
+
+    <form action="test">
+
+        <h2>텍스트와 관련된 input 태그의 타입</h2>
+        <h3>type="text"</h3>
+        <ul>
+            <li>한 줄로 텍스트를 입력할 수 있는 텍스트 상자</li>
+            <li>input 태그의 기본 타입(기본값)</li>
+            <li>type 속성을 생략하거나 잘못 작성했을 경우 자동으로 text 타입이 됨</li>
+        </ul>
+        아이디 : 
+        <input type="text"
+               name="userId"
+               placeholder="아이디를 입력하세요."
+               maxlength="10"
+               required>
+            <!--
+                * placeholder : 텍스트 상자에 설명 문구
+                * maxlength   : 입력할 수 있는 최대 길이
+                * required    : 필수 입력 항목. 입력하지 않을 경우 요청되지 않음!   
+            -->
+        <h3>type= "password"</h3>
+        <ul>
+            <li>비밀번호를 입력할 수 있는 텍스트 상자</li>
+            <li>사용자가 입력한 값을 숨겨주는 기능이 있음</li>
+        </ul>
+
+        비밀번호 : 
+        <input type="password" 
+                name="userId"
+                placeholder="영문, 숫자, 특수문자 8~15자"
+                maxlength="15"
+                required>
+        <h3>그 외의 타입들</h3>
+        <ul>
+            <li>검색 : search</li>
+            <li>홈페이지 : url</li>
+            <li>이메일 : email</li>
+            <li>전화번호 : tel</li>
+        </ul>       
+        검색 : 
+        <input type="search" name="keyword">
+        <br>
+        홈페이지 : 
+        <input type="url" name="url" value="http://">
+        <br>
+        이메일 : 
+        <input type="email" name="email">
+        <br>
+        전화번호 :
+        <input type="tel" name="tel">
+        <br><br>
+        <input type="submit" value="테스트">
+    </form>
+    <hr>
+    <h2>textarea 태그</h2>
+    <ul>
+        <li>여러 줄의 텍스트를 입력할 수 있는 텍스트 상자</li>
+    </ul>
+    <form action="test">
+        <fieldset>
+            <legend>글 작성</legend>
+
+            제목 : <input type="text" name="title" size="30">
+            <br>
+            내용 : <textarea name="content" 
+                            placeholder="내용을 입력하세요."
+                            cols="50"
+                            rows="10"
+                            style="resize:none;">
+            </textarea>
+            <br><br>
+            <input type="submit" value="작성하기">
+        </fieldset>
+    </form>
+    <hr>
+    <h2>숫자와 관련된 input 태그의 타입</h2>
+    <form action="test">
+        <h3>type="number"</h3>
+        <ul>
+            <li>숫자에 대한 값만 작성 가능한 텍스트 상자</li>
+            <li>스핀박스 표시됨(*스핀박스 : 위/아래 화살표 버튼)</li>
+        </ul>
+        수량 :
+        <input type="number" name="amount"
+                min="0" max="50" step="5" value="5">
+        <br>
+        <h3>type="range"</h3>
+        <ul>
+            <li>슬라이드 바를 통해 숫자 지정 가능</li>
+        </ul>
+        점수 : 
+        <input type="range" name="score" 
+                min="0" max="100" step="20">
+        <br>
+        <input type="submit" value="숫자 확인">
+    </form>
+    <hr>
+    
+    <h2>날짜 및 시간과 관련된 input 태그의 타입</h2>
+
+    <form action="test">
+        <ul>
+            <li>날짜 : date</li>
+            <li>월   : month</li>
+            <li>주   : week</li>
+            <li>시간 : time</li>
+            <li>날짜+ 시간 : datetime - local</li>
+        </ul>
+
+        date : 
+        <input type="date" name="date">
+        <!-- 연도,월,일,정보를 입력받을 수 있는 텍스트 상자-->
+         month :
+         <input type="month" name="month">
+         <!-- 연도, 월 정보를 입력받을 수 있는 텍스트 상자 -->
+
+         <br>
+
+         week : 
+         <input type="week" name="week">
+         <!-- 연도, 해당 연도의 몇번째 주인지에 대한 정보를 입력받을 수 있음 -->
+
+         <br>
+
+         time :
+         <input type="time" name="time">
+         <!-- 오전/오후,시,분,정보를 입력받을수 있음 -->
+        <br>
+
+        datetime - local :
+        <input type="datetime-local" name="datetimelocal">
+        <!-- 연도,월,일,시간 정보를 입력받을수 있음 -->
+
+        <br>
+
+        <input type="submit" value="날짜확인">
+    </form>
+
+    <hr>
+
+    <h2>라디오 버튼과 체크박스 관련 input 태그 타입 </h2>
+
+    <form action="test">
+        <h3>라디오 버튼</h3>
+        <ul>
+            <li>type = "radio"</li>
+            <li>
+                제시한 여러 개의 값들 중 한 개만 선택할 수 있도록 하고자 할 때
+                <ul>
+                    <li><u>name 속성 값이 같은</u> 요소끼리 하나의 그룹으로 묶어짐</li>
+                </ul>
+            </li>
+            <li>
+                form 전송 시 (submit) 현재 선택된 라디오 버튼의 value 속성 값이 전달됨
+                <ul>
+                    <li>즉, 해당 라디오 버튼 선택 시 전달한 값을 <u>value 속성</u> 에 반드시 명시해 줘야 함</li>
+                </ul>
+            </li>
+        </ul>
+        
+        성별 : 
+        <input type="radio" name="gender" id="genderX"value="X" checked>
+        <label for="genderX">선택안함</label>
+        <input type="radio" name="gender" id="genderM"value ="M">
+        <label for="genderM">남자</label>
+        <input type="radio" name="gender" id="genderF"value="F">
+        <label for="genderF">여자</label>
+
+        <h3>체크 박스</h3>
+        <ul>
+            <li>type = "checkbox"</li>
+            <li>제시한 여러 개의 값들 중 여러 개 선택할 수 있도록 하고자 할 때</li>
+            <li>현재 선택된 체크박스의 value값이 전달됨(반드시 value 속성값이 명시되어야 함!)</li>
+        </ul>
+
+        취미 :
+        <input type="checkbox" name="hobby" id="sleep" value="sleep">
+        <label for="sleep">누워있기</label>
+
+        <input type="checkbox" name="hobby" id="breath" value="breath">
+        <label for="breath">숨쉬기</label>
+
+        <input type="checkbox" name="hobby" id="running" value="running">
+        <label for="running">달리기</label>
+
+        <br><br>
+        <input type="submit">
+
+    </form>
+    <hr>
+
+    <h2>그 외의 input 태그 타입</h2>
+
+    <form action="test">
+
+        <h3>type="color"</h3>
+        <ul>
+            <li>색상을 선택할 수 있도록 하는 타입</li>
+        </ul>
+        <input type="color" name="color">
+
+        <h3>type="file"</h3>
+        <ul>
+            <li>파일을 첨부할 수 있도록 하는 타입</li>
+        </ul>
+        <input type="file" name="file">
+
+        <h3>type="hidden"</h3>
+        <ul>
+            <li>사용자에가 입력받지 않고
+                화면에 표시도 하지 않으면서
+                요청시 전달하고자 하는 값이 있는 경우 사용
+            </li>
+            <input type="hidden" name="hidden" value="숨겨진 내용ㅋㅋ">
+
+            <br><br>
+
+            <h3>버튼 관련 타입들</h3>
+            <ul>
+                <li>제출 : submit</li>
+                <li>초기화 : reset</li>
+                <li>일반 : button </li>
+            </ul>
+        </ul>
+        <input type="submit"> <!-- value="제출"-->
+        <input type="reset">  <!-- value="초기화"-->
+        <input type="button" value="일반버튼">
+
+        <br><br>
+
+        <h3>버튼(button) 태그</h3>
+        <ul>
+            <li>시작 태그와 종료태그 사이에 화면에 표시할 버튼 내용 작성</li>
+            <li>용도에 따라 type 속성 사용 (submit/reset/button)</li>
+        </ul>
+        <button type="submit">제출</button>
+        <button type="reset">초기화</button>
+        <button type="button">일반버튼</button>
+
+        <button>타입이 없는 버튼 -> 제출버튼</button>
+    </form>
+    <br>
+
+    <button>폼태그 밖에 있으면 아무 기능x</button>
+
+    <hr>
+
+    <h2>select 태그, option 태그</h2>
+
+    <ul>
+        <li>사용자가 직접 값을 입력하는 것이 아니라
+            제시된 여러개의 값들 중에 선택하도록 하고자 할 때
+        </li>
+        <li>
+            제출 시 선택된 option 태그의 값이 전달됨
+            <ul>
+                <li>각 option 태그의 value 속성이 지정되지 않은 경우
+                    content영역의 값이 전달됨
+                </li>
+                <li>
+                    각 option 태그의 value 속성이 지정된 경우
+                    해당 value의 값이 전달됨
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+    <form action="test">
+        언어:
+        <select name="lang">
+            <option value="ko">한국어</option>
+            <option value="ch">중국어</option>
+            <option value="jp">일본어</option>
+            <option value="en">영어</option>
+            <option selected>선택안함</option>
+        </select>
+
+        <br><br>
+
+        <input type="submit">
+
+    </form>
+    
+    <hr>
+
+    <h2>datalist태그</h2>
+    <ul>
+        <li>
+            사용자에게 직접 값을 입력받거나
+            select 태그처럼 목록을 통해 선택받을 수 있는 태그
+        </li>
+    </ul>
+
+    <form action="test">
+
+        좋아하는 과자 :
+        <input type="text" name="snack" list="snack-list">
+        <datalist id="snack-list">
+            <option value="snack1">바나나킥</option>
+            <option value="snack2">꾀돌이</option>
+            <option value="snack3">전병</option>
+        </datalist>
+
+        <br><br>
+
+        <input type="submit">
+    </form>
+
+    
+
+    
+
+
+</body>
+</html>

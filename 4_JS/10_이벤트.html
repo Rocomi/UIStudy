@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트</title>
+
+    <style>
+        .area {
+            border: 2px solid red;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>이벤트 (Event)</h1>
+    <h2> * 이벤트 모델 종류 *</h2>
+
+    <h3>1) 고전 이벤트 모델(기본 이벤트 모델)</h3>
+    <p>
+        특정 요소 객체를 가지고 와서 해당 요소의 이벤트 속성에 접근한 후 <br>
+        이벤트 핸들러를 연결하는 방식 (이벤트 제거도 가능)
+    </p>
+    <button id ="btn1">버튼1</button>
+    <button id ="btn2">버튼2</button>
+    <div class="area" id="area1"></div>
+    
+    <script>
+        const area1 = document.getElementById("area1");
+
+        // id 속성이 btn1인 요소에 onclick 이벤트 핸들러를 연결
+        document.getElementById("btn1").onclick = function() {
+            area1.innerHTML += "버튼1이 클릭되었습니다. <br>";
+        }
+
+        // id 속성이 btn2인 요소의 onclick 이벤트 핸들러 연결
+        // "버튼2가 클릭되었습니다." 출력하고, #btn1 요소의 클릭이벤트 핸들러를 제거
+        document.getElementById("btn2").onclick = function() {
+            area1.innerHTML += "버튼2가 클릭되었습니다.<br>";
+
+            document.getElementById("btn1").onclick = null;
+        }
+    </script>
+
+    <hr>
+
+    <h3>2) 인라인 이벤트 모델</h3>
+    <p>
+        요소 내부에 직접 이벤트 속성을 작성하여 실행할 내용을 정의하는 방식
+        주로, 스크립트 내에 정의되어 있는 함수를 호출하는 방식 사용
+    </p>
+
+    <button onclick="document.getElementById('area2').innerHTML += '인라인 클릭1 <br>';">인라인1</button>
+    <button onclick="inlineClick();">인라인2</button>
+    <div class="area" id="area2"></div>
+
+    <script>
+        function inlineClick() {
+            document.getElementById('area2').innerHTML += '인라인 클릭2 <br>';
+        }
+    </script>
+
+    <h3>3) 표준 이벤트 모델</h3>
+    <p>
+        w3c 에서 공식적으로 지정한 이벤트 모델 <br>
+        * ie 에서 9버전부터 사용하기 시작
+    </p>
+    <button id="btn3">표준 확인</button>
+    <script>
+        const btn3 = document.querySelector("#btn3");
+
+        // 요소.addEventListener("이벤트명", 이벤트핸들러(함수));
+
+        // * 버튼 클릭 시 알림창 띄워보기
+        btn3.addEventListener('click', function() {
+            // 이벤트 발생 시 수행할 코드
+            alert("알림알림?");
+        });
+
+        // * 마우스가 버튼 요소 내에 들어왔을 떄 배경색 변경하기
+        btn3.addEventListener('mouseenter', function() {
+            btn3.style.background = 'plum';
+        });
+
+        // * 마우스가 버튼 요소 밖으로 나갔을 때 배경색 변경하기
+        btn3.addEventListener('mouseout', function(){
+            btn3.style.background = 'skyblue';
+        });
+
+    </script>
+
+    <hr>
+
+    <h2> * 이벤트가 발생한 요소 객체에 접근하기 *</h2>
+    <button id="btn4">고전이벤트방식</button>
+    <button id="btn5">표준이벤트방식</button>
+    <!-- <button onclick="this.style.background= 'red'">인라인이벤트방식</button> -->
+    <!-- <button onclick="changeBackground(this);">인라인이벤트방식</button> -->
+    <button onclick="changeBack(event);">인라인이벤트방식</button>
+
+    <script>
+        // 고전 이벤트 방식
+        document.getElementById("btn4").onclick = function(e) {
+            // document.getElementById("btn4").style.background='yellow';
+            // console.log(e);
+            // e => 이벤트 객체 : 발생된 이벤트 정보(객체)
+            //  - e.target : 이벤트 발생 시 해당 요소 객체를 접근할 수 있음
+            e.target.style.background = 'yellow';
+
+            // window -> 윈도우 객체
+            // window.event -> 발생된 이벤트 정보
+            // console.log(window.event);
+            // window.event.target.style.background = 'yellow';
+
+            // this.style.background = 'yellow';
+
+            // this -> 이벤트가 발생된 대상 요소
+            this.style.background = 'yellow';
+        }
+
+        // 표준 이벤트 방식
+        document.getElementById("btn5").addEventListener('click' , function() {
+            // document.getElementById("btn5").style.background = 'violet';
+            event.target.style.background = 'violet';
+        });
+
+        // 인라인 이벤트 방식
+        function changeBackground(target) {
+            target.style.background = 'red';
+        }
+        function changeBack(e) {        // event 객체를 전달받는 방식
+            e.target.style.background = 'red';
+        }
+    </script>
+
+    <hr>
+    <h2>* 태그 별 기본적으로 가지고 있는 이벤트 제거 *</h2>
+    <p>
+        기본적으로 이벤트를 가지고 있는 요소(태그) <br>
+        - a 태그 : 클릭 시 href 속성을 통해 url을 요청(페이지 이동) <br>
+        - form 태그 내  submit 버튼 : 
+            버튼 클릭 시 사용자가 입력한 값들을 form태그의 action 속성을 통해 
+            해당 url로 요청(제출)
+    </p>
+    <br><br>
+    <p>
+        태그 내의 기본적으로 설정된 이벤트가 실행되지 않게 막는 방법 <br>
+        : 이벤트 핸들러의 반환값을 false로 주면 이벤트가 동작되지 않음 ( return false; )
+    </p>
+
+    <h4>a 태그 테스트</h4>
+    <a href="http://www.naver.com" onclick="alert('갈거야?'); return false;">네이버로</a>
+    <a href="http://www.naver.com" onclick="return test1();">네이버로 이동</a>
+    <script>
+        function test1() {
+            // "갈거야?" 질문 후 선택에 따라 이동하거나 이동하지 않거나.. (확인/취소)
+            // "확인" -> 페이지 이동, "취소" -> 페이지 이동 안함!
+            return confirm("갈거야?");
+        }
+    </script>
+
+    <br>
+
+    <h4>form 태그 테스트</h4>
+    <h3>로그인 폼</h3>
+    <form action="login" method="get">
+        아이디 : <input type="text" name="userId" id="userId"> <br>
+        비밀번호 : <input type="password" name="userPwd" id="userPwd"> <br>
+        비밀번호 확인 : <input type="password" id="userPwdCheck"> <br>
+
+        <input type="submit" value="회원가입" onclick="return validate();">
+    </form>
+
+    <script>
+        function validate() {
+            const idEle = document.getElementById("userId");
+            const pwdEle = document.getElementById("userPwd");
+            const pwdChkEle = document.getElementById("userPwdCheck");
+
+            // * 아이디에 대한 유효성 검사 : 영문자 또는 숫자로만 5자 이상 12자 이하
+            const id = idEle.value;
+            /* if (id.length >= 5 && id.length <= 12) {
+
+                // 유효성 검사
+                for(let i =0; i<id.length; i++) {
+                    const ch = id.charAt(i);    // = id[i]
+                    if ( !( ch>='a' && ch<='z' ) && !( ch>='A' && ch<='Z' ) && !( ch>='0' && ch<='9' )){
+                        alert("아이디는 영문자 또는 숫자로만 입력해야 합니다.");
+                        return false;
+                    }
+                }
+
+            } else {
+                // 아이디 값의 길이가 5보다 작거나 12보다 큰 경우
+                alert("아이디는 5자 이상 12자 이하로 입력해야 합니다.");
+                return false;
+            } */
+            // 정규식 적용
+            const regRxp = /^[a-z|A-Z|0-9]{5,12}$/;
+            if(!regRxp.test(id)) {
+                alert("유효한 아이디가 아닙니다.");
+                return false;
+            }
+
+             // * 비밀번호에 대한 유효성 검사
+            //      - 비밀번호, 비밀번호 확인의 값이 동일해야 함
+            const pwd = pwdEle.value;
+            const pwdCheck = pwdChkEle.value;
+            if (pwd != pwdCheck) {
+                alert("비밀번호와 비밀번호 확인에 입력된 값이 다릅니다.");
+                return false;
+            }
+        }
+    </script>
+
+</body>
+</html>

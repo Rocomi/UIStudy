@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 복습</title>
+
+    <style>
+        body {
+            background: black;
+            color: white;
+        }
+
+        input[name=search] {
+            width: 130px;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            background-image: url('	https://www.w3schools.com/howto/searchicon.png');
+            background-position: 10px 10px; 
+            background-repeat: no-repeat;
+            padding: 12px 20px 12px 40px;                       
+            -webkit-transition: width 0.4s ease-in-out;
+            transition: width 0.4s ease-in-out;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 16px;
+        }        
+
+        .w-100p { width: 100% !important; }
+
+
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+</head>
+<body>
+    <h3>문제1. 아래 검색 영역이 포커싱된 경우 가로 길이를 100%로 변경</h3>
+
+    <input type="text" name="search" placeholder="Search..">
+
+    <br>
+    <hr>
+
+    <h3>문제2. 아래 테이블의 행을 번갈아가며 배경색 변경</h3>
+    <table id="students">
+        <tr>
+          <th>이름</th>
+          <th>성별</th>
+          <th>취미</th>
+        </tr>
+        <tr>
+          <td>아이유</td>
+          <td>여자</td>
+          <td>작곡</td>
+        </tr>
+        <tr>
+          <td>카리나</td>
+          <td>여자</td>
+          <td>댄스</td>
+        </tr>
+        <tr>
+          <td>차은우</td>
+          <td>남자</td>
+          <td>연기</td>
+        </tr>
+      </table>    
+
+      <br>
+      <hr>
+  </body>
+      
+<script>
+  // $(:text)
+  $("input[type=text]").focus(function() {
+    $("input[type=text]").addClass('w-100p');
+  }).focusout(function() {
+    $("input[type=text]").removeClass('w-100p');
+  });
+
+  // $("tr:odd").css('background', 'darkgray');
+  $("#students tr:nth-child(even)").css('background', 'rgb(35,35,35)');
+</script>
+</html>

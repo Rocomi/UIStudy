@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>변수와 자료형</title>
+</head>
+<body>
+    <h1>변수와 자료형</h1>
+    <h2>변수 선언시 var, let, const라는 키워드를 이용하여 선언 가능</h2>
+
+    <h4>* 변수 선언 방법</h4>
+    <button onclick="check1()">확인</button>
+
+    <script>
+        function check1() {
+            // 1) var : 중복 선언 가능(단점), 재할당 가능
+            var userId = "user01";      // 변수 선언 (+초기화)
+            console.log(userId);
+
+            var userId = "user02";      // 중복 선언
+            console.log(userId);
+
+            userId = "user03"           // 재할당
+            console.log(userId);
+
+            console.log('-----------------------------------------------------------');
+            // -----------------------------------------------------------
+            // 2) let : 중복 선언 불가능, 재할당 가능 (자바의 변수와 유사)
+            let userPwd = "pass01";     // 변수 선언 (+초기화)
+            console.log(userPwd);
+            
+            /*
+            let userPwd = "pass02";     // 중복 선언 -> 안됨
+            console.log(userPwd);
+            */
+
+            userPwd = "pass02";     
+            console.log(userPwd);
+
+            // ----------------------------------------------------------------
+            // 3) const : 중복 선언 불가능, 재할당 불가능
+            //              -> 상수와 같은 개념 : 한 번 초기화된 값은 변경이 불가능
+            const userName = "아이유";
+            console.log(userName);
+
+            // const userName = "아일유";   // 중복 선언 -> 불가능!
+
+            // userName = "라리류";         // 재할당 불가능! 콘솔창에 오류 발생
+            // console.log(userName);
+            //---------------------------------------------------
+            /*
+                var : 자유롭게 변수 선언, 할당... 사용할 수 있는 장점으로 볼 수 있으나
+                        중복된 변수가 남발될 수 있고 의도치 않게 값이 변경될 수 있음(단점)
+                => 문제를 보완하고자 let, const 타입이 추가됨!
+
+                권장사항 : let, const 사용!!
+            */
+            
+        }
+    </script>
+
+    <hr>
+
+    <h3>* 자료형</h3>
+    <p>
+        변수 선언 시 자료형을 별도로 지정하지 않음 (=> 자료형의 개념이 없는 것은 아님!) <br>
+        => 한줄씩 실행되는 인터프리터 언어 특성상 변수에 대입되는 값에 따라서 알아서 자료형이 결정됨
+    </p>
+
+    <h4>자바스크립트의 자료형</h4>
+    <ul>
+        <li>숫자 : Number</li>
+        <li>문자열 : String</li>
+        <li>논리값 : Boolean</li>
+        <li>undefined</li> <!-- 값이 초기화되지 않은 것을 의미 -->
+        <li>null</li>   <!-- 값이 없는 것 -->
+        <li>Object</li> <!-- 객체. 배열/객체/..-->
+    </ul>
+
+    <button onclick="check2()">자료형 확인</button>
+
+    <script>
+        function check2() {
+            // 숫자 타입 -------------------------------
+            const num = 10;
+            const num2 = -30;
+            const num3 = 3.1415926535
+
+            // 타입 확인 : typeof(값) 또는 typeof 값
+            console.log(typeof num);
+            console.log(typeof num2);
+            console.log(typeof num3);
+            
+            console.log(typeof num == "number");    // true
+            console.log(typeof num == Number);      // false
+
+            //  ---------------------------------------------------
+
+            // 문자열 타입 ---------------------------------------
+            const str = "아이유";
+            console.log(typeof str);
+
+            /*
+                * newline (줄바꿈)   : \n
+                * tab               : \t
+                * \                 : \\
+            */
+            const str2 = "안녕하세요. 저는엄희윤 입니다. \n \t 나이는 30살 입니다."
+            console.log(str2);
+
+            console.log("안녕하세요." + str + "입니다.");
+            console.log('안녕하세요.' + str + '입니다.');
+            console.log(`안녕하세요. ${str}입니다.`);
+            //---------------------------------------------------
+            // 논리값 (boolean) -----------------------------------
+            const isTrue = true;
+            const isFalse = false;
+
+            console.log(isTrue);
+            console.log(isFalse);
+            //----------------------------------------------------------------
+            /*
+                * undifined : 직접적으로 값을 초기화하지 않았을 때 지정되는 값
+            */
+
+            let num4;
+            console.log(num4);
+            console.log(typeof num4);
+            
+            // num4 = undifined; // undefined를 직접 저장하는 것은 지양하자!
+            //---------------------------------------------------------
+            /*
+                * null : 값이 없다는 의미. 명시적으로 없는 값을 초기화하고자 할 때 사용.
+            */
+           let num5 = null;
+           console.log(num5);
+           console.log(typeof num5);
+
+           if (num5 == null) {
+            console.log("num5는 null값이다!");
+           }
+           //-------------------------------------------------------------------------
+           /*
+                * Object 타입 (Map과 유사한 형태)
+                    -> key:value 한 쌍으로 이루어져 있음 
+           */
+            const dictionary = {
+                red: "빨간색", 
+                blue: "파란색",
+                gold: "금색"
+            }
+
+            console.log(dictionary);
+
+            console.log(dictionary.blue);
+            console.log(dictionary['blue']);
+            
+            dictionary.red = "붉은색";
+            dictionary["blue"] = "푸른색";
+
+            console.log(dictionary);
+            
+            // 배열 타입 (Array, List 형태) --------
+            const arr = [];             // []
+            arr.push('빨간색');         // ['빨간색']
+            arr.push('파란색');         // ['빨간색', '파란색']
+
+            console.log(arr);
+            
+            arr[0] = '노란색';
+            console.log(arr);
+            
+        }
+    </script>
+
+    <hr>
+
+    <h3>* 변수 명명 규칙</h3>
+    <ol>
+        <li>일반적으로 영어를 사용하고, 문자와 숫자 모두 사용 가능</li>
+        <li>특수문자 _ 또는 $만 사용 가능</li>
+        <li>숫자로 시작할 수 없음 ex) 100_</li>
+        <li>키워드(예약어)를 변수명으로 사용할 수 없음 ex) let, const, var, ...</li>
+    </ol>
+
+    <h4>표기법 (Naming Type)</h4>
+    <ol>
+        <li>camelCase : 대부분 사용되는 표기법. 소문자로 시작하고 단어의 시작마다 대문자로 구분.</li>
+        <li>snake_case : 파이썬에서 주로 사용되는 표기법. 단어의 시작마다 _로 구분.</li>
+        <li>PascalCase : c# 또는 ms계열 언어에서 사용되는 표기법. 모든 단어의 시작을 대문자로 표기.</li>
+    </ol>
+</body>
+</html>

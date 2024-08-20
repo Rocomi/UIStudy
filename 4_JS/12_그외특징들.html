@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 특징</title>
+</head>
+<body>
+    <h2>* 호이스팅(hoisting)</h2>
+    <p>
+        모든 변수 선언문이 코드의 최상단으로 이동되는 것처럼 느껴지는 현상<br>
+        var 타입에서 확인되며, let과 const 타입에서는 호이스팅 현상이 일어나지 않는 것처럼 동작되게 해줌
+    </p>
+    <button onclick="hoisting();">확인</button>
+    <script>
+        function hoisting() {
+            /** var 타입 확인 **/
+            console.log(name);
+            // var name = "아이유";
+            console.log(name);
+
+            /** let 타입 확인 **/
+            // console.log(name2);     // Error 발생
+            let name2 = "아삼유";
+            console.log(name2);
+
+            /** const 타입 확인 **/
+            // console.log(name3);     // Error 발생
+            const name3 = "아사유";
+            console.log(name3);
+        }
+    </script>
+
+    <hr>
+
+    <h2>* 스코프 (scope)</h2>
+    <p>
+        변수 사용 가능 범위
+        - var : functional scope. 변수가 선언된 함수 영역 내에서 사용 가능 <br>
+        - let, const : block scope. 변수가 선언된 블럭({}) 내에서만 사용 가능(자바 유사!) <br>
+    </p>
+    <button onclick="funcScope()">확인(var)</button>
+    <button onclick="blockScope()">확인(let, const)</button>
+    <script>
+        function funcScope() {
+            var nick = "보라돌이";
+            console.log(nick);
+
+            // test1();     // 다른 함수에서는 오류 발생!
+            test2();        // 함수 내에 선언된 또 다른 함수에서는 사용 가능!
+
+            function test2() {
+                console.log(nick);
+            }
+
+            if (true) {
+                var age = 40;
+                // console.log(age);
+            }
+            console.log(age);
+
+            for(var i=0; i<5; i++) {}
+            console.log(i);
+            
+        }
+
+        function test1() {
+        
+            console.log(nick);
+        }
+
+        function blockScope() {
+            if(true) {
+                let height = 170;
+                const bloodType = 'AB형';
+
+                console.log(height);
+                console.log(bloodType);
+                console.log('------------------------------');
+                
+            }
+            console.log(height);
+            console.log(bloodType);
+        }
+    </script>
+    <hr>
+
+    <h2>* 전역변수, 지역변수</h2>
+    <p>
+        - 전역 변수 : 특정 함수영역 밖에 선언된 변수 (어디서든 사용 가능!)
+        - 지역 변수 : 특정 범위({}) 내에 선언된 변수
+    </p>
+    <script>
+        var declareVar = "var로 선언된 전역변수";
+        let declareLet = "let으로 선언된 전역변수";
+        const declareConst = "const로 선언된 전역변수";
+
+        declareTemp = "그냥 선언한 전역변수";
+
+        onload = function() {
+            // 전역변수와 동일한 이름으로 지역변수 선언
+            var declareVar = "var로 선언된 지역변수";
+            let declareLet = "let으로 선언된 지역변수";
+            const declareConst = "const로 선언된 지역변수";
+
+            declareTemp = "그냥 선언한 지역변수";
+
+            console.log(declareVar);
+            console.log(declareLet);
+            console.log(declareConst);
+            console.log(declareTemp);
+            //=> 전역변수와 지역변수의 이름이 동일할 경우 지역변수를 먼저 찾아서 사용!
+            console.log('---------------------------------------');
+            
+            // 전역변수의 값을 사용하고자 할 경우, window객체 또는 this를 사용하여 접근
+            console.log(this.declareVar);
+            console.log(window.declareVar);
+
+            console.log(this.declareLet);
+            console.log(window.declareLet);
+
+            console.log(this.declareConst);
+            console.log(window.declareConst);
+            // => let, const의 경우 접근 불가! -> undefined로 확인됨
+
+            console.log(this.declareTemp);
+            console.log(window.declareTemp);
+
+            console.log('--------------------------------------------------');
+            
+            declareIn = '함수 내에서 그냥 선언한 변수'
+            console.log(declareIn);
+            console.log(window.declareIn);
+            // => 키워드(var, let, const) 없이 선언한 변수는 전역변수로 선언됨
+            
+        }
+    </script>
+
+    <hr>
+
+    <h2>* 배열 관련 메소드</h2>
+    <h4>배열.map()</h4>
+    <p>
+        배열 내의 모든 요소 각각을 함수 결과 값으로 새로운 배열을 반환
+    </p>
+    <button onclick="mapTest();">map 확인</button>
+
+    <script>
+        function mapTest() {
+            let students =[
+                "아이유", 
+                "카리나",
+                "차은우",
+                "수지",
+                "애드쉬런"
+            ];
+
+            let newStudents = [];
+            for(let s of students) {
+                if (s.length >3)
+                    newStudents.push(s + '[유학생]');
+                else    
+                newStudents.push(s + '[일반학생]');
+            }
+            console.log(newStudents);
+            
+            // 위의 작업을 map 메소드를 사용한다면?
+            let newStudents2 = students.map((s) => {
+                if (s.length >3)
+                    return s + '[유학생]';
+                else 
+                    return s + '[일반학생]';
+            });
+            console.log(newStudents2);
+        }
+    </script>
+
+    <h4>배열.filter()</h4>
+    <p>
+        배열 내의 요소들을 주어진 함수에 의해 조건을 만족하는 항목만 모아 새로운 배열을 반환
+    </p>
+    <button onclick="filterTest()">filter 확인</button>
+
+    <script>
+        // function filterTest() {}
+        filterTest = () => {
+            let numbers =[1, 50, 31, 27, 14, 6];
+
+            let temp = [];
+            for(let n of numbers) {
+                // temp 배열에 짝수만 저장
+                if (n % 2 == 0)
+                    temp.push(n);
+                
+            }
+            console.log(temp);
+            
+            console.log(numbers.filter(n=> n % 2 == 0));
+        }
+    </script>
+
+    <h4>배열.reduce()</h4>
+    <p>
+        배열 내의 요소들을 주어진 함수를 실행하고 하나의 결과값을 반환
+    </p>
+    <button onclick="reduceTest()">reduce 확인</button>
+
+    <script>
+        function reduceTest() {
+            let numbers = [1, 2, 3, 4, 5, 6, 7];
+
+            // prev : 이전(인덱스)까지 결과값
+            // curr : 현재 인덱스 위치의 값
+            console.log(
+                numbers.reduce((prev, curr) => prev+curr, 0)
+            );
+        }
+    </script>
+
+</body>
+</html>

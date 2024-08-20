@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2024-08-19 복습 페이지</title>
+
+    <script src="./2024-08-19_practice.js"></script>
+    <style>
+        .area {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            background: black;
+        }
+    </style>
+</head>
+<body>
+    <h3>문제1. 색상 선택후 변경 버튼을 클릭하면 색상이 변경되도록 만들어 보세요</h3>
+    <div id="area1" class="area"></div>
+
+    <input type="color" id="selColor">
+    <button onclick="changeColor()">변경</button>
+    <!-- 버튼 클릭 시 선택된 색상으로 #area1 요소의 배경색 변경 -->
+
+    <hr><br><br>
+    <h3>문제2. 버튼에 따른 크기조절이 가능하게 만들어 보세요</h3>
+
+    <div id="area2" class="area"></div>
+    <button onclick="resize(50,50);">50x50</button>
+    <button onclick="resize(100, 100);">원본(100x100)</button>
+    <button onclick="resize(200, 200);">200x200</button>
+    
+    <hr><br><br>
+    <h3>문제3. 마우스오버 시 빨간색으로 변경되도록 만들어 보세요</h3>
+    <div id="area3" class="area"></div></div>
+    <!-- 마우스가 요소 바깥으로 나가는 경우 원래 색상(검정색)으로 돌아가도록 해주세요. -->
+</body>
+</html>

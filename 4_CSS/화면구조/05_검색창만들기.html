@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>검색창 만들기</title>
+
+    <style>
+        div, form, input {
+            /* border: 1px solid; */
+            box-sizing: border-box;
+        }
+
+        #header {
+            width: 600px;
+            height: 150px;
+
+            position: relative;
+        }
+
+        form > * {
+            box-sizing: border-box;
+            float: left;
+            height: 100%;
+        }
+
+        #search-form {
+            width: 80%;
+            height: 20%;
+
+            /***********************************************/
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            /* => 절대위치/ 상대위치를 사용하여 상하좌우 모두 양 끝으로 가도록 설정하면 가운데 배치됨! */
+        }
+
+        #search-form > input {height: 100%; float: left;}
+        #search-form > input:nth-child(1) { width: 80%;}
+        #search-form > input:nth-child(2) { width: 20%;}
+        /* :nth-child(n) => 자손들 중에 n번째 자손 요소 선택 */
+    </style>
+</head>
+<body>
+    <div id="header">
+        <form action="search" id="search-form">
+
+            <input type="text" name="keyword">
+            <input type="submit" value="검색">
+        </form>
+    </div>
+</body>
+</html>

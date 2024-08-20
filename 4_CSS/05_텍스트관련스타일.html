@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS - 텍스트 관련 스타일</title>
+
+    <style>
+        #c {
+            color: red;
+            color: #ff0000;
+            color: rgb(50, 200, 255);/* 각 값은 0 ~ 255 범위 */
+            color: rgba(50, 200, 255, 0.5); /* a : 투명도 */
+            color: hsl(120, 70%, 50%) /* h: 색상 0~360, s: 채도 0~100%, l: 명도 0~100%*/
+        }
+
+        #td1 {
+            text-decoration: overline
+        }
+        #td2 {
+            text-decoration: line-through
+        }
+        #td3 {
+            text-decoration: underline
+        }
+        #td4 {
+            text-decoration: none;
+            color:cornflowerblue;
+        }
+        #td4:hover {
+            text-decoration: none;
+            background-color:cornflowerblue;
+        }
+        #tt1 {
+            text-transform: uppercase
+        }
+        #tt2 {
+            text-transform: lowercase
+        }
+        #tt3 {
+            text-transform: capitalize
+        }
+
+        .shadow {
+            font-size: 2em; 
+            font-weight: 900;
+        }
+        #ts1 {
+            color: brown;
+            /* 오른쪽 아래로. 번짐정도 생략시 선명한 그림자, 색상 생략 시 글자 색상 */
+            text-shadow: 5px 5px;
+            /* 왼쪽 위로. 살짝 번져보이고 검정색 그림자 */
+            text-shadow: -5px -5px 5px black;
+        }
+        #ts2 {
+            color: white;
+            text-shadow: 0px 0px 10px red; /* 입체감 있게 표현. 네온사인 효과 */ 
+        }
+        #ts3 {
+            color: white;
+            text-shadow: 0px 0px 4px darkgray
+                        , 0px -5px 4px yellow
+                        , 0px -10px 8px orangered
+                        , 0px -15px 15px red;
+        }
+    </style>
+
+</head>
+<body>
+    <h1>텍스트 관련 스타일 (text~)</h1>
+
+    <h2>color : 텍스트 색상 지정</h2>
+    <pre id="c">
+        선택자 {
+            color: 색상명 | 16진수 | rgb(x, x, x) | rgba(x, x, x, x) | hsl (x, x, x) | hsla (x, x, x, x);
+        }
+    </pre>
+
+    <hr>
+
+    <h3>text-decoration : 텍스트에 줄을 표시하거나 또는 표시하지 않고자 할 때 사용</h3>
+    <pre>
+        선택자 {
+            text-decoration: none | underline | overline | line-through
+        }
+    </pre>
+
+    <!-- ul>li#td$*3 -->
+    <ul>
+        <li id="td1">텍스트에 줄긋기 (상단)</li>
+        <li id="td2">텍스트에 줄긋기 (중간)</li>
+        <li id="td3">텍스트에 줄긋기 (하단)</li>
+    </ul>
+
+    <a href="http://www.naver.com" target="_blank" id="td4">네이버로...</a>
+
+    <hr>
+
+    <h3>text-transform : 영문 텍스트의 대소문자 변환 시 사용</h3>
+    <pre>
+        선택자{
+            text-transform: uppercase | lowercase | capitalize;
+        }
+    </pre>
+
+    <!-- ul>li#tt$*3 -->
+    <ul>
+        <li id="tt1">uppercase : 모든 영문자를 대문자로 변환</li>
+        <li id="tt2">LOWERCASE : 모든 영문자를 소문자로 변환</li>
+        <li id="tt3">capitalize : 영문자의 첫번째 글자만 대문자로 변환</li>
+    </ul>
+     
+    <hr>
+
+    <h3>text-shadow : 텍스트에 그림자 효과를 줄 때 사용</h3>
+    <pre>
+        선택자 {
+            text-shadow: 가로거리(x) 세로거리(y) [번짐정도] [색상];
+        }
+    </pre>
+
+    <!-- div>span.shadow#ts${COOKIE}*3-->
+    <div>
+        <span class="shadow" id="ts1">COOKIE</span> <br><br><br>
+        <span class="shadow" id="ts2">COOKIE</span> <br><br><br>
+        <span class="shadow" id="ts3">COOKIE</span> <br><br><br>
+    </div>
+    
+    <hr>
+
+    <h3>text-align : 텍스트 정렬 시 사용</h3>
+    <pre>
+        선택자 {
+            text-align : left(기본값) | justify(양쪽) | right | center;
+        }
+    </pre>
+
+    <h4>왼쪽정렬(기본)</h4>
+    <p style="text-align: left;">모든 국민은 그 보호하는 자녀에게 적어도 초등교육과 법률이 정하는 교육을 받게 할 의무를 진다. 
+        국가는 법률이 정하는 바에 의하여 재외국민을 보호할 의무를 진다. 
+        원장은 국회의 동의를 얻어 대통령이 임명하고, 그 임기는 4년으로 하며, 1차에 한하여 중임할 수 있다. 
+        모든 국민은 학문과 예술의 자유를 가진다.</p>
+    <h4>양쪽정렬</h4>
+    <p style="text-align: justify";>모든 국민은 그 보호하는 자녀에게 적어도 초등교육과 법률이 정하는 교육을 받게 할 의무를 진다. 
+        국가는 법률이 정하는 바에 의하여 재외국민을 보호할 의무를 진다. 
+        원장은 국회의 동의를 얻어 대통령이 임명하고, 그 임기는 4년으로 하며, 1차에 한하여 중임할 수 있다. 
+        모든 국민은 학문과 예술의 자유를 가진다.</p>
+    <h4>오른쪽정렬</h4>
+    <p style="text-align: right;";>모든 국민은 그 보호하는 자녀에게 적어도 초등교육과 법률이 정하는 교육을 받게 할 의무를 진다. 
+        국가는 법률이 정하는 바에 의하여 재외국민을 보호할 의무를 진다. 
+        원장은 국회의 동의를 얻어 대통령이 임명하고, 그 임기는 4년으로 하며, 1차에 한하여 중임할 수 있다. 
+        모든 국민은 학문과 예술의 자유를 가진다.</p>
+    <h4>가운데정렬</h4>
+    <p style="text-align: center";>모든 국민은 그 보호하는 자녀에게 적어도 초등교육과 법률이 정하는 교육을 받게 할 의무를 진다. 
+        국가는 법률이 정하는 바에 의하여 재외국민을 보호할 의무를 진다. 
+        원장은 국회의 동의를 얻어 대통령이 임명하고, 그 임기는 4년으로 하며, 1차에 한하여 중임할 수 있다. 
+        모든 국민은 학문과 예술의 자유를 가진다.</p>
+
+        <hr>
+
+        <h3>line-height : 줄 간격 조절 시 사용 (장평 조절)</h3>
+
+        <pre>
+            선택자 { 
+                line-height : normal(기본) | px | em | %;
+            }
+        </pre>
+        
+        <h4>고정 단위 간격 (px)</h4>
+        <p style="line-height: 30px;">모든 국민은 그 보호하는 자녀에게 적어도 초등교육과 법률이 정하는 교육을 받게 할 의무를 진다. 
+            국가는 법률이 정하는 바에 의하여 재외국민을 보호할 의무를 진다. 
+            원장은 국회의 동의를 얻어 대통령이 임명하고, 그 임기는 4년으로 하며, 1차에 한하여 중임할 수 있다. 
+            모든 국민은 학문과 예술의 자유를 가진다.</p>
+        <h4>가변 단위 간격(em)</h4>
+        <p style="line-height: 2.5em;";>모든 국민은 그 보호하는 자녀에게 적어도 초등교육과 법률이 정하는 교육을 받게 할 의무를 진다. 
+            국가는 법률이 정하는 바에 의하여 재외국민을 보호할 의무를 진다. 
+            원장은 국회의 동의를 얻어 대통령이 임명하고, 그 임기는 4년으로 하며, 1차에 한하여 중임할 수 있다. 
+            모든 국민은 학문과 예술의 자유를 가진다.</p>
+        <h4>가변 단위 간격(%)</h4>
+        <p style="line-height: 200%;";>모든 국민은 그 보호하는 자녀에게 적어도 초등교육과 법률이 정하는 교육을 받게 할 의무를 진다. 
+            국가는 법률이 정하는 바에 의하여 재외국민을 보호할 의무를 진다. 
+            원장은 국회의 동의를 얻어 대통령이 임명하고, 그 임기는 4년으로 하며, 1차에 한하여 중임할 수 있다. 
+            모든 국민은 학문과 예술의 자유를 가진다.</p>
+
+</body>
+</html>

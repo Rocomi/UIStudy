@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS - 레이아웃 스타일 2</title>
+
+    <style>
+        .pos { border: 1px solid darkgreen}
+        .outer {position: relative; border: 1px solid darkred;}   
+        
+        #child1 {width: 300px; height: 300px; background-color: gold;}
+        #child2 {
+            width: 200px; height: 200px; background-color: darkcyan;
+            position : absolute; top: 50px; left: 50px;
+            /*
+            => position:relative 이 적용된 부모 요소로 부터 위에서 50px
+                왼쪽으로부터 50px 간격을 두고 위치
+            */
+        }
+        #child3 {
+            width: 100px; height: 100px; background-color: plum;
+            position: absolute; top: 100px; left: 100px;
+        }
+
+        #fixed-area {
+            width: 100px; height: 100px; background-color: salmon;
+            /* position: fixed; bottom : 10px; right: 10px;  */
+        }
+
+        .z-style {
+            border: 1px solid green;
+            width: 150px;
+            height: 100px;
+            position : absolute;
+        }
+        #z1 {
+            background-color: rgb(255, 86, 170);
+            top: 100px;
+            left: 100px;
+            z-index: 10000;
+        }
+        #z2 {
+            background-color: rgb(252, 149, 200);
+            top: 50px;
+            left: 50px;
+            z-index: 100;
+        }
+        #z3 {
+            background-color: rgb(252, 208, 230);
+            z-index: 0;
+        }
+
+        .vs-style {
+            width: 250px;
+            height: 100px;
+        }
+
+        .f-style { border: 2px solid #5dc2f5; width: 70px; height: 30px; float: right;}
+    </style>
+</head>
+<body>
+    <h1>배치 관련 스타일</h1>
+
+    <h3>position</h3>
+    <p>상대위치(relative)와 절대위치(absolute)</p>
+
+    <div class="outer">
+        <div class="pos" id="child1">첫번째 자식 요소</div>
+        <div class="pos" id="child2">두번째 자식 요소</div>
+        <div class="pos" id="child3">세번째 자식 요소</div>
+    </div>
+
+    <br>
+
+    <p>고정위치(fixed)</p>
+    <div class="pos" id="fixed-area"></div> <!--스타일 주석처리 해놓음-->
+
+    <hr>
+
+    <h3>z-index</h3>
+    <p>요소들을 순서대로 위로 쌓는 속성</p>
+    <!-- .outer>.z-style#z$*3 -->
+    <div class="outer"> <!--position: relative 적용되어 있음-->
+        <div class="z-style" id="z1">AAA</div>
+        <div class="z-style" id="z2">BBB</div>
+        <div class="z-style" id="z3">CCC</div>
+    </div>
+    <br><br><br><br><br><br><br><br><br><br>
+    <hr>
+
+    <h3>visibility</h3>
+    <p>특정 요소를 보여주거나 또는 보이지 않도록 하는 스타일 속성</p>
+
+    <div class="vs-style" style="background-color: purple;" >area1</div>
+    <div class="vs-style" style="background-color: rgb(255, 51, 255); display: none;">area2</div>
+    <div class="vs-style" style="background-color: rgb(241, 158, 241); visibility: hidden;">area3</div>
+    <div class="vs-style" style="background-color: rgb(253, 211, 253);">area4</div>
+
+    <b>visibility: hidden => 공간 차지하면서 사라짐</b>
+    <b>display: none => 공간까지 사라짐</b>
+
+    <hr>
+
+    <h3>float</h3>
+    <p>페이지 내의 요소들을 화면으로부터 띄워서 왼쪽 또는 오른쪽으로 배치하는 스타일 속성</p>
+
+    <div class="f-style">Element1</div>
+    <div class="f-style">Element2</div>
+    <div class="f-style">Element3</div>
+    <div class="f-style">Element4</div>
+    <div class="f-style">Element5</div>
+
+    <br clear="both">
+
+    <hr>
+
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

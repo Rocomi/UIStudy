@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>데이터 입출력</title>
+
+    <style>
+        .area {
+            border: 1px solid red;
+            width: 300px;
+            height: 100px;
+        }
+    </style>
+
+</head>
+<body>
+    <h1>자바스크립트에서의 데이터 입/출력</h1>
+    <!--
+        * window : 자바스크립트의 내장 객체로 브라우저 창이 열릴 때 마다 하나씩 만들어지는 객체
+                    브라우저 창 안에 존재하는 모든 요소들의 최상위 객체 (생략가능)
+        
+        * document : 웹 문서마다 하나씩 만들어지는 객체 (html 문서에 대한 정보들을 가지고 있음)
+    -->
+
+    <h2>1. 데이터를 출력하는 구문</h2>
+    <ol>
+        <li>[window.]alert("출력하고자 하는 내용");</li>
+        <li>[window.]console.log("콘솔창에 출력하고자 하는 내용");</li>
+        <li>document.write("화면상에 출력하고자 하는 내용");</li>
+        <li>선택한요소.innerHTML | .innerText = "선택된 요소에 출력할 내용";</li>
+    </ol>
+
+    <script>
+        // alert("안녕");
+        console.log("반가워~");
+    </script>
+
+    <button onclick="documentWrite();">화면에 출력</button>
+    <script>
+        function documentWrite() {
+            // document.write("안녕~");
+            // document.write("<b>이게될까?</b> 과연?");
+            // => 출력할 내용에 html 태그가 포함되어 있을 경우 해석하여 시각적인 요소로 보여짐
+            let table ="<table border='1'>"
+                        +     "<tr>"
+                        +       "<th>이름</th>"
+                        +       "<td>엄희윤</td>"
+                        +   "</tr>"
+                        +  "</table>";
+                document.write(table);
+            }
+    </script>
+    <br><br>
+
+    <h3>요소에 출력 하기</h3>
+    <div class="area" id="area1">
+        자바스크립트에서 어떤 요소(element)안의 값(content)을 가지고 오거나 <br>
+        변경하고자 할 때 <b>innerHTML, innerText</b> 라는 속성에 접근
+    </div>
+
+    <button onclick="elementTest()">확인</button>
+        <script>
+
+            function elementTest() {
+
+                // div요소의 정보를 가지고 오기
+                let divEl = document.getElementById("area1");
+
+                console.log(divEl);
+
+                // 선택된 요소의 속성에 접근 (. 을 사용하여 접근)
+                console.log(divEl.id); // id : 해당 요소의 아이디 속성
+                console.log(divEl.className) // className : 해당 요소의 클래스 속성
+
+                console.log(divEl.innerHTML);   // innerHTML : 요소의 content영역 안의 html까지 포함
+                console.log(divEl.innerText);   // innerText : 요소의 contentt영역 안의 텍스트만 포함
+
+                divEl.innerHTML = "<h4>innerHTML 을 사용하여 속성 변경</h4>";
+                divEl.innerText = "<h4>innerHTML 을 사용하여 속성 변경</h4>";
+
+                divEl.style.backgroundColor = "skyblue";
+
+            }
+    </script>
+
+    <hr>
+
+    
+
+    <br><br>
+    <button onclick="test1()">innnerHTML 조회</button>
+    <button onclick="test2()">innnerText 적용</button>
+    <br>
+    <button onclick="test3()">innnerHTML 조회</button>
+    <button onclick="test4()">innnerText 적용</button>
+    <br><br>
+    <div id="t-area" style="border: 1px solid pink; width: 300px; height: 300px;">
+        <h2>헷갈리는 속성들</h2>
+        <p>그만!</p>
+    </div>
+
+    <script>
+        function test1() {
+            let tArea = document.getElementById("t-area");
+
+            alert(tArea.innerHTML);
+        }
+
+        function test2() {
+            let tArea = document.getElementById("t-area");
+
+            alert(tArea.innerText);
+        }
+
+        function test3() {
+            let tArea = document.getElementById("t-area");
+
+            tArea.innerHTML = "<mark>곧 점심이다!</mark>";
+        }
+
+        function test4() {
+            let tArea = document.getElementById("t-area");
+
+            tArea.innerText = "<mark>곧 점심이다!</mark>";
+        }
+    </script>
+
+    <hr>
+
+    <h2>2. 데이터를 입력받는 구문 (변수에 저장/기록)</h2>
+    <ol>
+        <li>변수 = [window.]confirm("질문 내용");</li>
+        <li>변수 = [window.]prompt("질문 내용");</li>
+        <li>변수 = 선택한요소.속성; (id, className, innerText, ...)</li>
+        <li>변수 = 선택한input요소.value;</li>
+    </ol>
+
+
+
+    <h3>[window.]confirm("질문내용");</h3>
+    <p>
+        confirm 호출 시 "질문내용, 확인/취소 버튼이 존재하는 알림창이 표시됨"<br>
+        확인 버튼 클릭시 true, 취소버튼 클릭 시 false를 반환
+    </p>
+    <button onclick="confirmTest()">클릭</button>
+    <div id="area2"></div>
+
+    <script>
+        function confirmTest() {
+            let result = confirm("졸려요? (졸리면 확인 / 아니면 취소)");
+            console.log(result);
+        
+
+            // 아이디 속성이 area2인 요소 접근
+            let divEl2 = document.getElementById("area2");
+            if(result) {
+                // result의 값이 true인 경우 -> 졸리다..
+                divEl2.innerHTML = "<h3>정신 차리세요!!!</h3>";
+            } else {
+                // result의 값이 false인 경우 -> 안졸리다
+                divEl2.innerHTML = "<h3>굿....!!!</h3>";
+            }
+
+    }
+    </script>
+
+    <br>
+
+    <h3>[window.]prompt("질문 내용");</h3>
+    <p>
+        prompt 호출 시 "질문 내용"과 입력할 수 있는 "텍스트 상자", 확인/취소 버튼이 보여지는 알림창이 표시됨 <br>
+        확인 버튼 클릭 시 텍스트 상자에 입력된 값을 문자열로 반환 <br>
+        취소 버뜬 클릭 시 null을 반환 (값이 입력되어 있어도 취소버튼 클릭 시 null 반환)
+    </p>
+
+    <button onclick="promptTest()">클릭</button>
+    <div id="area3"></div>
+
+    <script>
+        function promptTest() {
+            // 이름, 나이 입력받아 변수에 저장
+            let name = prompt("이름을 입력하시오");
+            let age = prompt("나이를 입력하시오");
+
+            // area3이라는 id 속성을 가진 요소에 접근
+            let divEl3 = document.getElementById("area3");
+            // 입력된 정보 : 이름 (<b>{나이}</b>)
+            divEl3.innerHTML = "입력된 정보 : " + name + "(<b>" + age + "</b>)";
+        }
+    </script>
+
+    <br><br>
+
+    <h3>선택한 input요소의 값(content) 접근</h3>
+    <p>
+        선택된요소.value
+    </p>
+
+    아이디 : <input type="text" id="userId"> <br>
+    비밀번호 : <input type="password" id="userPwd"> <br>
+
+    <input type="button" value="로그인" onclick="loginTest();">
+    <input type="text" id="area4">
+
+    <script>
+        function loginTest() {
+            // 사용자가 입력한 아이디, 비밀번호 값을 조회
+
+            // 아이디 입력되는 input 요소 접근 (id-> userId)
+            let idEl = document.getElementById("userId");
+
+            // 비밀번호가 입력되는 input 요소 접근 (id-> userPwd)
+            let pwdEl = document.getElementById("userPwd");
+
+            console.log(idEl.value);
+            console.log(pwdEl.value);
+
+            // 입력된 값을 {아이디}, {비밀번호} 형식으로
+            //          id 속성 값이 area4인 요소에 출력
+            
+            // id 속성의 값이 area4인 요소에 접근
+            document.getElementById("area4").value = idEl.value + " , " + pwdEl.value;
+
+            // 아이디, 비밀번호 입력된 input 요소에 접근하여 값 대입
+
+            // document.getElementById("userId").value = "";
+            // document.getElementById("userPwd").value = ""; 아래와 같은 역할
+
+            idEl.value = '';
+            pwdEl.value = '';
+        }
+    </script>
+
+
+
+</body>
+</html>

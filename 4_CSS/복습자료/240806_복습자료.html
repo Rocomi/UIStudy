@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>240806 복습</title>
+
+   <style>
+    h1 {
+        color: darkblue;
+    }
+
+    fieldset {
+        background-color: skyblue;
+    }
+
+    input {
+        background-color: antiquewhite;
+    }
+
+    button {
+        background-color: rgb(1, 1, 139); color: aliceblue; width: 50%;
+    }
+
+    body {text-align: center;}
+
+    
+
+   </style>
+
+</head>
+
+<body>
+
+    <p id="title"><h1>KH 회원가입</h1></p>
+
+    <hr>
+    <form action="signup" method="get">
+        <fieldset>
+            
+                <input type="text" 
+                name="userId"
+                placeholder="아이디"
+                required>
+                <br><br>
+                
+                <input type="password" 
+                name="userPwd"
+                placeholder="비밀번호"
+                required>
+                <br><br>
+
+                <input type="email" 
+                name="email"
+                placeholder="[선택] 이메일주소">
+           
+        </fieldset>
+        <br>
+        <fieldset>
+    
+
+                <input type="text" 
+                name="userName"
+                placeholder="이름"
+                required>
+                <br><br>
+
+                <label for="birth">생년월일 : </label>
+                <input type="date" 
+                name="birth"
+                id="birth"
+                required>
+                <br><br>
+
+                <select name="telecom">
+                    <option value="kt">KT</option>
+                    <option value="skt">SKT</option>
+                    <option value="lg">LG</option>
+                </select>
+
+                <input type="tel" 
+                name="phone"
+                placeholder="휴대전화번호"
+                required>
+                <br>
+
+        </fieldset>
+    </form>
+    <br>
+
+    <button>회원 가입</button>
+    
+</body>
+</html>

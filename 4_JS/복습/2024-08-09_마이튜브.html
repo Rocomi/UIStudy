@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mytube</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Ultra&display=swap" rel="stylesheet">
+
+    <style>
+        * { box-sizing: border-box; }
+
+        html, body { margin:0; padding: 0; height: 100%; background-color: black; color:white;}
+
+        #wrap { width: 100%; height: 100%; }
+
+        #header, #content, #footer { width: 100%; }
+
+        #header { 
+            height: 60px; line-height: 60px;
+            margin: 3% 0;
+            padding: 0 3%;
+
+            display: flex; 
+            justify-content: space-between; 
+        }
+        #header > * { height: 100%;  }
+        #header1 { width: 20%; text-align: center; }
+        #header1 > span { font-size: 1.5em; font-family: "Ultra", serif;  }
+        
+        #header2 { 
+            flex: 1;  
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #header2 > * { float: left; }
+        #input-keyword { 
+            width: 80%; min-width: 300px; max-width: 500px;
+            height: 30px;
+
+            border: none;
+            border-top-left-radius: 20px;
+            border-bottom-left-radius: 20px;
+            background-color: #777;
+        }
+        #btn-search { 
+            width: 50px; height: 30px; 
+            padding: 0.3%;
+
+            border: none;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+            box-shadow: 0px 0px 20px;
+        }
+        #btn-search:hover {
+            cursor: pointer;
+        }
+        #btn-search > p {
+            width:100%;height:100%; margin: 0;
+
+            background-image: url("/복습/search.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+        }
+
+        #header3 { width: 25%; position: relative; }
+        #header3 > div { 
+            width: 50px; height: 50px; 
+
+            position: absolute; right: 0; top: 0; bottom: 0; margin: auto;
+
+            background-color: darkgray;
+            border: 1px solid darkgray;
+            
+            border-radius: 50%;
+        }
+
+        #content {
+            height: calc(100% - 60px); 
+            margin: 3% 0;
+            padding: 0 3%;
+        }
+        #content > * { float: left; }
+        #content1 { width: 20%; font-family: "Ubuntu", sans-serif; font-size: 20px }
+        #content1 > ul { 
+            padding: 0 10px 0 10px;
+            list-style: none; 
+            margin: 0;
+        }
+        #content1 > ul > li { 
+            padding: 5% 0; 
+            text-align: center;}
+        #content1 > ul > li:hover { 
+            background-color: ghostwhite; 
+            color: black; 
+            border-radius: 20px;
+
+            cursor: pointer;
+        }
+
+
+        #content2 { 
+            width: 80%; 
+            display: flex; 
+
+            flex-wrap: wrap;
+        }
+        .video-area { 
+            width: 200px; height: 150px;
+            background-color: rgb(179, 195, 211);
+            margin: 0 5px 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div id="header">
+            <div id="header1">
+                <span>Mytube</span>
+            </div>
+            <div id="header2">
+                <input type="text" name="keyword" id="input-keyword">
+                <button id="btn-search" onclick="window.alert('검색기능 개선중... 다음에 다시 시도.')"><p></p></button>
+            </div>
+            <script>
+
+                btn.onclick = function() {      //이름이 없는 함수(익명함수)
+            window.alert("검색 기능 개선중... 다음에 시도 요망.")
+            }
+            </script>
+
+            <div id="header3">
+                <div></div>
+            </div>
+        </div>
+        <div id="content">
+            <div id="content1">
+                <ul>
+                    <li>Home</li>
+                    <li>Shorts</li>
+                    <li>Sub</li>
+                    <li>Me</li>
+                </ul>
+            </div>
+            <div id="content2">
+                <div class="video-area"></div>
+                <div class="video-area"></div>
+                <div class="video-area"></div>
+                <div class="video-area"></div>
+                <div class="video-area"></div>
+                <div class="video-area"></div>
+                <div class="video-area"></div>
+                <div class="video-area"></div>
+                <div class="video-area"></div>
+                <div class="video-area"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

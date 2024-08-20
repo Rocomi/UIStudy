@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>객체 (2)</title>
+    <style>
+        .area {
+            border: 2px solid blue;
+            background-color: skyblue;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <h3>객체 배열을 사용하여 다량의 데이터 관리</h3>
+    <button onclick="test6();">실행</button>
+    <div class="area" id="area6"></div>
+    <script>
+        function test6() {
+            const person0 = {name: "기다운", age: 30, gender: "남"};
+            const person1 = {name: "김정현", age: 20, gender: "여"};
+            const person2 = {name: "허완", age: 4, gender: "남"};
+            const person3 = {name: "최서은", age: 23, gender: "여"};
+            const person4 = {name: "강사님", age: 20, gender: "여"};
+
+            const pArr = [];
+            pArr.push(person0);
+            pArr.push(person1);
+            pArr.push(person2);
+            pArr.push(person3);
+            pArr.push(person4);
+
+            console.log(pArr);
+            console.log(pArr[0]);
+            console.log(pArr[3]);
+
+            // 반복문 사용하여 이름만 출력
+            for(let person of pArr) {
+                console.log(person.name);
+            }
+
+            // 배열 내의 각 객체에 point 속성을 추가
+            pArr[0].point = 0;
+            pArr[1].point = 0;
+
+            // 반복문 사용하여 속성 추가
+            for(let i=0; i<pArr.length; i++) {
+                pArr[i].point = 0;
+            }
+            
+            console.log(pArr);
+
+            // 반복문 사용하여 toString() 메소드 추가
+            //   "name: xx, age: xx, gender: xx, point: xx" 형식으로 반환
+            for(let i=0; i<pArr.length; i++) {
+                pArr[i].toString = function() {
+                    return `name: ${this.name}, age: ${this.age}, gender: ${this.gender}, point: ${this.point}`;
+                    //return "name: " + this.name + ", age: " + this.age + ", gender: " + this.gender + ", point: " + this.point ;
+                };
+            }
+
+            const area6 = document.getElementById("area6");
+            for(let person of pArr) {
+                area6.innerHTML += person + "<br>";
+            }
+            // area6.innerHTML = pArr;
+        }
+    </script>
+
+    <hr>
+
+    <h3>생성자 함수</h3>
+    <p>
+        new 키워드를 통해서 객체를 생성할 수 있는 함수 <br>
+        (함수명 첫글자를 대문자로 작성)
+    </p>
+    <button onclick="test7();">실행</button>
+    <div class="area" id="area7"></div>
+
+    <script>
+        // 사람의 정보를 저장할 객체 (생성자 함수)
+        function Person(name, age, gender, point) {
+            this.name = name;
+            this.age = age;
+            this.gender = gender;
+            this.point = point;
+
+            this.toString = function() {
+                return `name: ${this.name}, age: ${this.age}, gender: ${this.gender}, point: ${this.point}, acs: ${this.acs}`;
+            }
+        }
+
+        function test7() {
+            const person0 = new Person("임수진", 20, "여", 100);
+                        // = { name: "xx", age: xx, ..}
+            const person1 = new Person("아이유", 30, "여", 80);
+
+            const area7 = document.getElementById("area7");
+            area7.innerHTML = person0 +"<br>";
+            area7.innerHTML += person1 + "<br>";
+        }
+    </script>
+
+    <hr>
+
+    <h3>Date 내장 객체</h3>
+    <p>
+        날짜/시간 관련 내장객체
+    </p>
+    <button onclick="test8();">실행</button>
+    <div class="area" id="area8"></div>
+    <script>
+        function test8() {
+            const area8 = document.getElementById("area8");
+
+            // 현재 날짜 및 시간
+            const now = new Date();
+            area8.innerHTML = "현재 날짜 및 시간 (getTime()) : " + now.getTime() + "<br>";
+
+            // 2024년 6월 11일 날짜로 생성
+            const begin = new Date(2024, 6-1, 11);  // Date(연도, 월-1, 일);
+            area8.innerHTML += "2024년 6월 11일로 설정된 시간 : " + begin.getTime() + "<br>";
+
+            // 2024년 11월 25일 13시 00분 00초 날짜로 생성
+            const end = new Date(2024, 11-1, 25, 13, 0, 0);     // Date(연도, 월-1, 일, 시, 분, 초);
+            area8.innerHTML += "2024년 11월 25일로 설정된 시간 : " + end.getTime() + "<br>";
+
+            /* [참고]
+                1s == 1000ms
+                5s == 5000ms
+                10s == 10000ms
+             */
+            area8.innerHTML += "<hr>";
+
+            area8.innerHTML += "현재 : " + now + "<br>";
+            area8.innerHTML += "개강일 : " + begin + "<br>";
+            area8.innerHTML += "종강일 : " + end + "<br>";
+
+            /*********
+             * 연도 : getFullYear() -> yyyy
+             * 월   : getMonth() +1 -> mm
+             * 일   : getDate()     -> dd
+             * 요일 : getDay()      -> 숫자타입 (0: 일 ~ 6: 토)
+             * 시   : getHours()
+             * 분   : getMinutes()
+             * 초   : getSeconds()
+             * ********/
+
+            area8.innerHTML += "연도 : " + end.getFullYear() + "<br>";
+            area8.innerHTML += "월   : " + (end.getMonth() + 1) + "<br>";
+            area8.innerHTML += "일   : " + end.getDate() + "<br>";
+            area8.innerHTML += "시   : " + end.getHours() + "<br>";
+            area8.innerHTML += "분   : " + end.getMinutes() + "<br>";
+            area8.innerHTML += "초   : " + end.getSeconds() + "<br>";
+
+            area8.innerHTML += "요일 : (" + end.getDay()+ ") " 
+                            + getDayTextV2( end.getDay() ) + "<br>";
+
+            // -----------------------------------------------------
+            // 날짜 계산
+            //  현재 기준으로 종강일까지 얼마나 남았는지 (일수)
+
+            area8.innerHTML += "<hr>";
+            area8.innerHTML += "종강일 - 현재날짜 : " + (end - now) + "<br>";
+            // => 밀리세컨드 단위로 계산이 됨
+            /*
+                1s == 1000ms == 1 * 1000
+                1m == 1s * 60 == 1 * 1000 * 60
+                1h == 1m * 60 == 1 * 1000 * 60 * 60
+                1d == 1h * 24 == 1 * 1000 * 60 * 60 * 24
+            */
+           area8.innerHTML += "남은 일수 : " + Math.round((end-now) / (1000*60*60*24)) + "<br>";
+        }
+
+        function getDayText(dayNum) {
+            // 0: 일, 1: 월, 2: 화, ..., 6:토
+
+            // (1) 조건문 사용하여 요일 정보 반환하기
+            switch(dayNum) {
+                case 0: return "일";
+                case 1: return "월";
+                case 2: return "화";
+                case 3: return "수";
+                case 4: return "목";
+                case 5: return "금";
+                case 6: return "토";
+            }
+        }
+
+        function getDayTextV2(dayNum) {
+            // (2) 배열을 사용하여 반환하기
+            const days = ["일", "월", "화", "수", "목", "금", "토"];
+            return days[dayNum];
+        }
+    </script>
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

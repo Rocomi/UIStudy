@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery - 요소 생성 및 제거</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    
+    <style>
+        .addItem { color: aquamarine;} 
+
+        .area {
+            width : 100px;
+            height: 100px;
+            background-color: blueviolet;
+            color: white;
+            text-align: center;
+        }
+
+        .bg-pink {
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <h1>요소 생성 및 제거</h1>
+
+    <h3>* 삽입 관련 메소드</h3>
+    <p>
+        선택된 요소를 기준으로 새로운 요소를 추가시켜주는 메소드
+    </p>
+    <pre>
+        $(A).append(B) : A 요소 내에 뒷부분에 B 요소를 추가 (자손/하위)
+        $(A).prepend(B) : A 요소 내에 앞부분에 B 요소를 추가 (자손/하위)
+
+        $(A).after(B) : A 요소 뒷부분에 B 요소를 추가 (동위)
+        $(A).before(B) : A 요소 앞부분에 B 요소를 추가 (동위)
+    </pre>
+
+    <br>
+    <h1 id="test1">
+        <span>A</span>
+    </h1>
+    <h1 id="test2">
+        <span>A</span>
+    </h1>
+    <h1 id="test3">
+        <span>A</span>
+    </h1>
+    <h1 id="test4">
+        <span>A</span>
+    </h1>
+
+    <script>
+        $(function() {
+            $('#test1').append('<span class="addItem">1</span>');   // 1추가
+            $('<span class="addItem">5</span>').appendTo('#test1'); // 5추가
+
+            $('#test2').prepend('<span class="addItem">2</span>');  // 2추가
+
+            $('#test3').after('<span class="addItem">3</span>');    // 3추가
+
+            $('#test4').before('<span class="addItem">4</span>');   // 4추가
+        });
+    </script>
+
+    <hr>
+
+    <h3>* 제거 관련 메소드</h3>
+
+    <ul>
+        <li>
+            $(선택자).emtpy() : 선택된 요소의 하위 요소를 제거해주는 메소드
+        </li>
+        <li>
+            $(선택자).remove()|detach() : 선택된 요소를 제거한 후 해당 요소를 반환해주는 메소드
+            <ul>
+                <li>.remove() : 제거된 요소의 이벤트를 가져오지 않음</li>
+                <li>.detach() : 제거된 요소의 이벤트까지 가져옴</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h1 class="area" id="item1">
+        <span>힘내!</span>
+    </h1>
+
+    <button id="empty">제거1</button>
+    <button id="remove">제거2</button>
+    <button id="detach">제거3</button>
+
+    <div id="result"></div>
+
+    <script>
+        $(function() {
+            // #item1 요소에 마우스 오버 이벤트 추가
+            // - 마우그 오버 되었을 떄는 bg-pink 클래스 추가
+            /* $('#item1').mouseenter(function() {
+                $(this).addClass("bg-pink");
+            }).mouseleave(function() {
+                $(this).removeClass("bg-pink");
+            }); */
+            $('#item1').hover(function(){
+                $(this).addClass("bg-pink");
+            }, function() {
+                $(this).removeClass("bg-pink");
+            });
+
+            //-----------------------------------------------
+
+            // [제거1] 버튼 클릭했을 때 #item1 요소를 비워보자.
+            $("#empty").click(function() {
+                $("#item1").empty();    // 하위 요소 제거
+            });
+
+            // [제거2] 버튼 클릭했을 떄 해당 요소를 제거해 보자 (remove)
+            $('#remove').click(function() {
+                const rmElement = $("#item1").remove();
+
+                // #result 인 요소에 제거된 항목을 추가
+                $("#result").append(rmElement);
+            });
+
+            // [제거3] 버튼을 클릭 시 해당 요소 제거 (detach)
+            $('#detach').click(function() {
+                const dtElement = $("#item1").detach();
+
+                // #result 인 요소에 제거된 항목을 추가
+                $("#result").append(dtElement);
+            });
+        });
+    </script>
+
+</body>
+</html>
