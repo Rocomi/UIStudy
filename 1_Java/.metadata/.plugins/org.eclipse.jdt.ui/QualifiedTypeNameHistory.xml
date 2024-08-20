@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.util.Iterator"/>
+    <fullyQualifiedTypeName name="kh.project.geneJar.veiw.Employee_TestMenu"/>
+    <fullyQualifiedTypeName name="kh.project.geneJar.model.vo.Employee"/>
+    <fullyQualifiedTypeName name="java.util.Collections"/>
+    <fullyQualifiedTypeName name="java.util.Map.Entry"/>
+    <fullyQualifiedTypeName name="kh.project.geneJar.manufacture.List.Vaccine"/>
+    <fullyQualifiedTypeName name="kh.project.geneJar.model.dao.Data"/>
+    <fullyQualifiedTypeName name="java.util.Arrays"/>
+    <fullyQualifiedTypeName name="java.util.Comparator"/>
+    <fullyQualifiedTypeName name="kh.project.geneJarChat.server.Server"/>
+    <fullyQualifiedTypeName name="com.kh.timer.Timer"/>
+    <fullyQualifiedTypeName name="java.util.Timer"/>
+    <fullyQualifiedTypeName name="java.time.Duration"/>
+</qualifiedTypeNameHistroy>

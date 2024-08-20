@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.kh.timer.Timer&apos; to &apos;BreakTime&apos;&#x0D;&#x0A;- Original project: &apos;0_Timer&apos;&#x0D;&#x0A;- Original element: &apos;com.kh.timer.Timer&apos;&#x0D;&#x0A;- Renamed element: &apos;com.kh.timer.BreakTime&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Timer&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;com.kh.timer{Timer.java[Timer" matchStrategy="1" name="BreakTime" qualified="false" references="true" similarDeclarations="false" stamp="1721978158277" textual="false" version="1.0"/>
+</session>

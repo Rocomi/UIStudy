@@ -1,0 +1,11 @@
+package com.kh.timer.run;
+
+import com.kh.timer.BreakTime;
+
+public class Run {
+
+	public static void main(String[] args) {
+		new BreakTime().timer();
+	}
+
+}
